@@ -1,0 +1,36 @@
+.form-inputs {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input-nombre {
+  width: 40%;
+}
+
+text {
+  font-family: "inria sans", sans-serif;
+  color: var(--bg-color);
+}
+
+.return {
+  position: absolute;
+  top: 1rem;
+  right: 4rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.form-header-text {
+  position: relative;
+}

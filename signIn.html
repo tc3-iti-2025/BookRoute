@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/logoBookRouteDark.svg" type="image/x-icon">
+  <link rel="stylesheet" href="css/styleLogin.css">
+  <link rel="stylesheet" href="css/styleSignIn.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italianno&family=Moon+Dance&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>BookRoute</title>
+</head>
+
+<body class="container">
+  <form action="/" method="post">
+    <div class="form-container">
+      <div class="form-header">
+        <div class="form-header-text">
+          <a class="return" href="login.html">
+            < </a>
+        </div>
+        <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="logo">
+      </div>
+      <div class="form-body">
+        <div class="form-inputs">
+          <input required class="form-input form-input-nombre" id="pri_nom" placeholder="Primer Nombre (*)" type="text">
+          <input class="form-input form-input-nombre" id="seg_nom" placeholder="Segundo Nombre" type="text">
+        </div>
+        <div class="form-inputs">
+          <input required class="form-input form-input-nombre" id="pri_ape" placeholder="Primer Apellido (*)"
+            type="text">
+          <input class="form-input form-input-nombre" id="seg_ape" placeholder="Segundo Apellido" type="text">
+        </div>
+        <input type="text" class="form-input" id="telefono" placeholder="Teléfono (*)" required>
+        <input type="text" class="form-input" id="email" placeholder="Email (*)" required>
+        <input type="password" class="form-input" id="password" placeholder="Contraseña (*)" required>
+        <text>(*) = Campo Requerido</text>
+        <input class="form-submit" type="submit" value="Crear Cuenta">
+      </div>
+    </div>
+  </form>
+</body>
+
+</html>
