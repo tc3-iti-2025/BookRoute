@@ -5,29 +5,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="images/logoBookRouteDark.svg" type="image/x-icon">
-  <link rel="stylesheet" href="css/styleLogin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italianno&family=Moon+Dance&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>Login</title>
 </head>
 
-<body class="container">
+<body class="flex items-center justify-center h-screen bg-[#918B76]">
   <form action="#" method="post">
-    <div class="form-container">
-      <div class="form-header">
-        <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="logo">
+    <div class="bg-white rounded-lg shadow-lg w-96 h-128 flex flex-col justify-center items-center">
+      <div class="flex justify-center mb-10">
+        <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="w-96 h-40 mt-5">
       </div>
-      <div class="form-body">
-        <input required class="form-input" id="email" placeholder="Email" type="text">
-        <input required class="form-input" id="password" placeholder="Contraseña" type="password">
-        <div class="forget-password">
-          <a class="forget-password-text">Olvidaste tu contraseña?</a>
+      <div class="flex flex-col items-center">
+        <input required class="font-['inria sans', sans-serif] w-80 h-8 p-2 border-1 border-gray-400 rounded-lg mt-5 "
+          id="email" placeholder="Email" type="text">
+        <input required class="font-['inria sans', sans-serif] w-80 h-8 p-2 border-1 border-gray-400 rounded-lg mt-5 "
+          id="password" placeholder="Contraseña" type="password">
+        <div class="flex items-end justify-end w-80 mt-5">
+          <a class="cursor-pointer">
+            <p class="font-['inria sans', sans-serif] text-gray-400 text-xs underline decoration-1">
+              Olvidaste tu contraseña?
+            </p>
+            <a>
         </div>
-        <input class="form-submit" type="submit" value="Ingresar">
-        <text>No tienes una cuenta? <a href="signIn.html">Haz Click Aquí</a> </text>
+        <input
+          class="bg-[#007A8C] font-['inria sans', sans-serif] border-none rounded-lg w-64 h-10 my-2 text-white flex justify-center"
+          type="submit" value="Ingresar">
+        <p class="font-['inria sans', sans-serif]">
+          <span class="text-gray-600">No tienes una cuenta?</span>
+          <a class="cursor-pointer" href="signIn.html">
+            <span class="text-black-600 font-semibold underline decoration-1">
+              Haz Click Aquí
+            </span>
+          </a>
+        </p>
       </div>
     </div>
   </form>

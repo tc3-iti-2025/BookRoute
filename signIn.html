@@ -5,41 +5,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="images/logoBookRouteDark.svg" type="image/x-icon">
-  <link rel="stylesheet" href="css/styleLogin.css">
-  <link rel="stylesheet" href="css/styleSignIn.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italianno&family=Moon+Dance&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>BookRoute</title>
 </head>
 
-<body class="container">
+<body class="flex items-center justify-center h-screen bg-[#918B76]">
   <form action="/" method="post">
-    <div class="form-container">
-      <div class="form-header">
-        <div class="form-header-text">
+    <div class="bg-white rounded-lg shadow-lg w-96 h-128 flex flex-col justify-center items-center relative">
+      <div class="flex justify-center mb-5">
+        <div
+          class="flex items-center justify-center w-10 h-10 bg-[#007A8C] rounded-full absolute top-5 left-5 text-white">
           <a class="return" href="login.html">
-            < </a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+          </a>
         </div>
         <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="logo">
       </div>
-      <div class="form-body">
-        <div class="form-inputs">
-          <input required class="form-input form-input-nombre" id="pri_nom" placeholder="Primer Nombre (*)" type="text">
-          <input class="form-input form-input-nombre" id="seg_nom" placeholder="Segundo Nombre" type="text">
+      <div class="flex flex-col items-center">
+        <div class="flex flex-row w-full items-center justify-between mt-2">
+          <input required
+            class="font-['inria sans', sans-serif] w-[45%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5"
+            id="pri_nom" placeholder="Primer Nombre (*)" type="text">
+          <input class="font-['inria sans', sans-serif] w-[45%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5"
+            id="seg_nom" placeholder="Segundo Nombre" type="text">
         </div>
-        <div class="form-inputs">
-          <input required class="form-input form-input-nombre" id="pri_ape" placeholder="Primer Apellido (*)"
-            type="text">
-          <input class="form-input form-input-nombre" id="seg_ape" placeholder="Segundo Apellido" type="text">
+        <div class="flex flex-row w-full items-center justify-between mt-2">
+          <input required
+            class="font-['inria sans', sans-serif] w-[45%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5"
+            id="pri_ape" placeholder="Primer Apellido (*)" type="text">
+          <input class="font-['inria sans', sans-serif] w-[45%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5"
+            id="seg_ape" placeholder="Segundo Apellido" type="text">
         </div>
-        <input type="text" class="form-input" id="telefono" placeholder="Teléfono (*)" required>
-        <input type="text" class="form-input" id="email" placeholder="Email (*)" required>
-        <input type="password" class="form-input" id="password" placeholder="Contraseña (*)" required>
-        <text>(*) = Campo Requerido</text>
-        <input class="form-submit" type="submit" value="Crear Cuenta">
+        <input type="text"
+          class="font-['inria sans', sans-serif] w-[90%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5 mt-2"
+          id="telefono" placeholder="Teléfono (*)" required>
+        <input type="text"
+          class="font-['inria sans', sans-serif] w-[90%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5 mt-2"
+          id="email" placeholder="Email (*)" required>
+        <input type="password"
+          class="font-['inria sans', sans-serif] w-[90%] h-8 p-2 border-1 border-gray-400 rounded-lg mx-5 mt-2"
+          id="password" placeholder="Contraseña (*)" required>
+        <p class="font-['inria sans', sans-serif] text-gray-500"> (*) = Campo Requerido</p>
+        <input
+          class="bg-[#007A8C] cursor-pointer font-['inria sans', sans-serif] border-none rounded-lg w-64 h-10 my-2 text-white flex justify-center"
+          type="submit" value="Crear Cuenta">
       </div>
     </div>
   </form>
