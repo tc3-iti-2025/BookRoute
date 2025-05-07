@@ -16,14 +16,16 @@ create table personas(
 
 class personas
 {
+  private $id;
   private $ci;
   private $pri_nom;
   private $seg_nom;
   private $pri_ape;
   private $seg_ape;
 
-  public function __construct($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape)
+  public function __construct($id, $ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape)
   {
+    $this->id = $id;
     $this->ci = $ci;
     $this->pri_nom = $pri_nom;
     $this->seg_nom = $seg_nom;
@@ -31,5 +33,10 @@ class personas
     $this->seg_ape = $seg_ape;
   }
 
+  // public function insertPersona($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape)
+  // public function updatePersona($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape)
+  // public function deletePersona($id)
+  // public function getPersonas($id=null)
+  // public function validatePersona($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape)
 
 }

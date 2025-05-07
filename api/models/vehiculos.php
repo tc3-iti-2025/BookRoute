@@ -9,3 +9,25 @@ create table vehiculos(
   primary key(id)  
 );
 */
+
+class vehiculos
+{
+	private $id;
+	private $matricula;
+	private $tipo;
+	private $asientosTotales;
+
+	public function __construct($id, $matricula, $tipo, $asientosTotales)
+	{
+		$this->id = $id;
+		$this->matricula = $matricula;
+		$this->tipo = $tipo;
+		$this->asientosTotales = $asientosTotales;
+	}
+
+	// public function insertVehiculo($matricula, $tipo, $asientosTotales)
+	// public function updateVehiculo($matricula, $tipo, $asientosTotales)
+	// public function deleteVehiculo($id)
+	// public function getVehiculos($id=null)
+	// public function validateVehiculo($matricula, $tipo, $asientosTotales)
+}

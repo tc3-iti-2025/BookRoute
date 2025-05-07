@@ -13,4 +13,26 @@
 );
 */
 
-class usuarios {}
+class usuarios
+{
+  public $id;
+  public $persona;
+  public $correo;
+  public $password;
+  public $rol;
+
+  public function __construct($id, $persona, $correo, $password, $rol)
+  {
+    $this->id = $id;
+    $this->persona = $persona;
+    $this->correo = $correo;
+    $this->password = $password;
+    $this->rol = $rol;
+  }
+
+  // public function insertUsuario($persona, $correo, $password, $rol)
+  // public function updateUsuario($persona, $correo, $password, $rol)
+  // public function deleteUsuario($id)
+  // public function getUsuarios($id=null)
+  // public function validateUsuario($persona, $correo, $password, $rol)
+}

@@ -9,6 +9,24 @@ create table rutas(
   primary key (id)
 );*/
 
-class rutas{
-  
+class rutas
+{
+	private $id;
+	private $origen;
+	private $destino;
+	private $distancia;
+
+	public function __construct($id, $origen, $destino, $distancia)
+	{
+		$this->id = $id;
+		$this->origen = $origen;
+		$this->destino = $destino;
+		$this->distancia = $distancia;
+	}
+
+	// public function insertRuta($origen, $destino, $distancia)
+	// public function updateRuta($origen, $destino, $distancia)
+	// public function deleteRuta($id)
+	// public function getRutas($id=null)
+	// public function validateRuta($origen, $destino, $distancia)
 }
