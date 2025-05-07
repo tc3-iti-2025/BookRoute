@@ -1,18 +1,6 @@
 <?php
 
-/*
-  create table usuarios(
-  id int auto_increment not null,
-	persona int,
-	correo varchar(75) not null,
-	password varchar(20) not null,
-	rol int,
-  primary key(id),
-  foreign key (persona) references personas(id),
-  foreign key (rol) references roles(id)
-);
-*/
-
+require_once '../db/db.php';
 class usuarios
 {
   public $id;
@@ -21,7 +9,7 @@ class usuarios
   public $password;
   public $rol;
 
-  public function __construct($id, $persona, $correo, $password, $rol)
+  public function __construct($id=null, $persona=null, $correo=null, $password=null, $rol=null)
   {
     $this->id = $id;
     $this->persona = $persona;
@@ -30,9 +18,64 @@ class usuarios
     $this->rol = $rol;
   }
 
-  // public function insertUsuario($persona, $correo, $password, $rol)
-  // public function updateUsuario($persona, $correo, $password, $rol)
-  // public function deleteUsuario($id)
-  // public function getUsuarios($id=null)
-  // public function validateUsuario($persona, $correo, $password, $rol)
+  public function insertUsuario($persona, $correo, $password, $rol){
+    global $db;
+    $query = "INSERT INTO usuarios (persona, correo, password, rol) VALUES (?, ?, ?, ?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("issi", $persona, $correo, $password, $rol);
+    if ($stmt->execute()) {
+      return $db->insert_id;
+    } else {
+      return false;
+    }
+  }
+  public function updateUsuario($persona, $correo, $password, $rol, $id){
+    global $db;
+    $query = "UPDATE usuarios SET persona=?, correo=?, password=?, rol=? WHERE id=?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("issii", $persona, $correo, $password, $rol, $id);
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function deleteUsuario($id){
+    global $db;
+    $query = "UPDATE usuarios SET is_active=false WHERE id=?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public function getUsuarios($id=null){
+    global $db;
+    if ($id) {
+      $query = "SELECT * FROM usuarios WHERE id=? AND is_active=true";
+      $stmt = $db->prepare($query);
+      $stmt->bind_param("i", $id);
+    } else {
+      $query = "SELECT * FROM usuarios WHERE is_active=true";
+      $stmt = $db->prepare($query);
+    }
+    if ($stmt->execute()) {
+      return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    } else {
+      return false;
+    }
+  }
+  public function validateUsuario($persona, $correo, $password, $rol){
+    global $db;
+    $query = "SELECT * FROM usuarios WHERE persona=? AND correo=? AND password=? AND rol=?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("issi", $persona, $correo, $password, $rol);
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
