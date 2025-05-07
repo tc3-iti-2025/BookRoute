@@ -5,8 +5,8 @@ $USERNAME = "root";
 $PASSWORD = "";
 $DATABASE = "BookRoute";
 
-$connection = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASE);
+$db = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASE);
 
-if (!$connection) {
+if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
 }
