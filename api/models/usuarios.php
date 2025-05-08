@@ -9,7 +9,7 @@ class usuarios
   public $password;
   public $rol;
 
-  public function __construct($id=null, $persona=null, $correo=null, $password=null, $rol=null)
+  public function __construct($id = null, $persona = null, $correo = null, $password = null, $rol = null)
   {
     $this->id = $id;
     $this->persona = $persona;
@@ -18,7 +18,8 @@ class usuarios
     $this->rol = $rol;
   }
 
-  public function insertUsuario($persona, $correo, $password, $rol){
+  public function insertUsuario($persona, $correo, $password, $rol)
+  {
     global $db;
     $query = "INSERT INTO usuarios (persona, correo, password, rol) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($query);
@@ -29,7 +30,8 @@ class usuarios
       return false;
     }
   }
-  public function updateUsuario($persona, $correo, $password, $rol, $id){
+  public function updateUsuario($persona, $correo, $password, $rol, $id)
+  {
     global $db;
     $query = "UPDATE usuarios SET persona=?, correo=?, password=?, rol=? WHERE id=?";
     $stmt = $db->prepare($query);
@@ -40,9 +42,10 @@ class usuarios
       return false;
     }
   }
-  public function deleteUsuario($id){
+  public function deleteUsuario($id)
+  {
     global $db;
-    $query = "UPDATE usuarios SET is_active=false WHERE id=?";
+    $query = "UPDATE usuarios SET is_active=0 WHERE id=?";
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
@@ -51,14 +54,15 @@ class usuarios
       return false;
     }
   }
-  public function getUsuarios($id=null){
+  public function getUsuarios($id = null)
+  {
     global $db;
     if ($id) {
-      $query = "SELECT * FROM usuarios WHERE id=? AND is_active=true";
+      $query = "SELECT * FROM usuarios WHERE id=? AND is_active=1";
       $stmt = $db->prepare($query);
       $stmt->bind_param("i", $id);
     } else {
-      $query = "SELECT * FROM usuarios WHERE is_active=true";
+      $query = "SELECT * FROM usuarios WHERE is_active=1";
       $stmt = $db->prepare($query);
     }
     if ($stmt->execute()) {
@@ -67,13 +71,24 @@ class usuarios
       return false;
     }
   }
-  public function validateUsuario($persona, $correo, $password, $rol){
+  public function iniciarSesion($correo, $password)
+  {
     global $db;
-    $query = "SELECT * FROM usuarios WHERE persona=? AND correo=? AND password=? AND rol=?";
+    $query = "SELECT * FROM usuarios WHERE correo=? AND password=? AND is_active=1";
     $stmt = $db->prepare($query);
-    $stmt->bind_param("issi", $persona, $correo, $password, $rol);
+    $stmt->bind_param("ss", $correo, $password);
     if ($stmt->execute()) {
-      return true;
+      $result = $stmt->get_result()->fetch_assoc();
+      if ($result) {
+        if ($result['rol'] == 1) {
+          return json_encode(array("message" => "Admin", "Datos:" => $result));
+        }
+        if ($result['rol'] == 2) {
+          return json_encode(array("message" => "User", "Datos:" => $result));
+        }
+      } else {
+        return false;
+      }
     } else {
       return false;
     }

@@ -3,7 +3,7 @@
 require_once '../models/usuarios.php';
 $usuarios = new usuarios();
 
-switch ($_SERVER['REQUEST_METHOD']){
+switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
@@ -57,9 +57,8 @@ switch ($_SERVER['REQUEST_METHOD']){
       $id = $_GET['id'];
       $result = $usuarios->deleteUsuario($id);
       if ($result) {
-        echo json_encode(array("message" => "Usuario deleted successfully.")); 
-      }
-      else {
+        echo json_encode(array("message" => "Usuario deleted successfully."));
+      } else {
         echo json_encode(array("message" => "Failed to delete usuario."));
       }
     } else {
@@ -70,4 +69,3 @@ switch ($_SERVER['REQUEST_METHOD']){
     echo json_encode(array("message" => "Invalid request method."));
     break;
 }
-
