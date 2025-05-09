@@ -4,7 +4,7 @@ require_once '../db/db.php';
 
 if (isset($_POST['btnLogin'])) {
   $txtCorreo = $_POST['correo'];
-  $txtPassword = $_POST['password'];
+  $txtPassword = md5($_POST['password']);
 
   if (empty($txtCorreo) || empty($txtPassword)) {
     echo "Por favor, complete todos los campos.";
@@ -29,11 +29,11 @@ if (isset($_POST['btnLogin'])) {
     echo $result['rol'];
     echo ($_SESSION['rol'] == 1 ? 'admin' : 'user');
     if ($_SESSION['rol'] == 1) {
-      header('Location: /bookroute/admin/index.php');
+      header('Location: /bookroute/admin/index.html');
       exit();
     }
     if ($_SESSION['rol'] == 2) {
-      header('Location: /bookroute/user/index.php');
+      header('Location: /bookroute/user/index.html');
       exit();
     }
     header('Location: /bookroute/index.php');

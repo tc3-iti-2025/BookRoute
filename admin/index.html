@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../images/logoBookRouteDark.svg" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italianno&family=Moon+Dance&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Ventana de Admin</title>
+</head>
+
+<body class="h-screen bg-gray-100 dark:bg-gray-900 w-full">
+  <header class="flex mb-10 w-full h-25 bg-blue-600 dark:bg-blue-900 rounded-b-lg">
+    <div class="flex items-center w-full ml-5">
+      <p class="text-white text-2xl font-bold font-['Inria_Sans', sans-serif]">Ventana de Administración</p>
+    </div>
+    <div class="flex justify-end w-full h-full align-middle">
+      <div class="flex justify-end w-auto h-full align-middle items-center">
+        <form action="/bookroute/api/controllers/auth_login.php" method="post">
+          <input type="submit" value="Cerrar Sesión" name="btnLogout" id="btnLogout"
+            class="cursor-pointer hover:bg-gray-700 bg-blue-600 dark:bg-gray-400 text-white dark:text-black-600 font-['Inria_Sans', sans-serif] rounded-lg px-4 py-2 mr-5">
+        </form>
+      </div>
+      <img src="../images/logoBookRouteDark.svg" alt="BookRoute Logo" class="w-48 h-20 my-auto">
+    </div>
+  </header>
+  <div class="w-full h-full flex flex-col justify-center align-middle items-center">
+    <ul class="flex flex-row justify-center items-center h-20 w-[80%] bg-gray-200 dark:bg-gray-700 rounded-t-lg">
+      <li class="mx-4">
+        <button onclick="loadTable('personas')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="personas">Personas</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('usuarios')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="usuarios">Usuarios</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('choferes')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="choferes">Choferes</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('rutas')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="rutas">Rutas</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('viajes')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="viajes">Viajes</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('reservas')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="reservas">Reservas</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('vehiculos')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="vehiculos">Vehiculos</span></button>
+      </li>
+      <li class="mx-4">
+        <button onclick="loadTable('estadisticas')"
+          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+            id="estadisticas">Estadisticas</span></button>
+      </li>
+    </ul>
+    <div
+      class="flex flex-col items-center w-[80%] h-full bg-gray-200 dark:bg-gray-700 rounded-b-lg border-t-2 border-blue-600 dark:border-blue-400 mb-10">
+      <table id="table" class="min-w-full h-10 text-sm text-left text-gray-500 dark:text-gray-400">
+      </table>
+    </div>
+  </div>
+  <footer class="flex justify-center items-center w-full h-20 bg-blue-600 dark:bg-blue-900 rounded-t-lg">
+    <div class="flex items-center">
+      <p class="text-white text-sm font-['Inria_Sans', sans-serif]">© 2025 BookRoute. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script type="text/javascript" src="admin.js"></script>
+</body>
+
+</html>

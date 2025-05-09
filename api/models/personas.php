@@ -61,20 +61,13 @@ class personas
   {
     global $db;
     $query = "SELECT * FROM personas WHERE is_active=true";
-    $personas = array();
     if ($id) {
-      $query .= " AND id=?";
-      $stmt = $db->prepare($query);
-      $stmt->bind_param("i", $id);
-      $stmt->execute();
-      $result = $stmt->get_result();
-    } else {
-      $stmt = $db->prepare($query);
-      $stmt->execute();
-      $result = $stmt->get_result();
+      $query .= " AND id=" . $id;
     }
+    $result = $db->query($query);
+    $personas = array();
     while ($row = $result->fetch_assoc()) {
-      $personas[] = new personas($row['id'], $row['ci'], $row['pri_nom'], $row['seg_nom'], $row['pri_ape'], $row['seg_ape']);
+      $personas[] = $row;
     }
     return $personas;
   }

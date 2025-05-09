@@ -8,7 +8,7 @@ class viajes
   public $ruta;
   public $precio;
 
-  public function __construct($id=null, $chofer=null, $vehiculo=null, $ruta=null, $precio=null)
+  public function __construct($id = null, $chofer = null, $vehiculo = null, $ruta = null, $precio = null)
   {
     $this->id = $id;
     $this->chofer = $chofer;
@@ -17,7 +17,8 @@ class viajes
     $this->precio = $precio;
   }
 
-  public function insertViaje($chofer, $vehiculo, $ruta, $precio){
+  public function insertViaje($chofer, $vehiculo, $ruta, $precio)
+  {
     global $db;
     $query = "INSERT INTO viajes (chofer, vehiculo, ruta, precio) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($query);
@@ -28,7 +29,8 @@ class viajes
       return false;
     }
   }
-  public function updateViaje($id, $chofer, $vehiculo, $ruta, $precio){
+  public function updateViaje($id, $chofer, $vehiculo, $ruta, $precio)
+  {
     global $db;
     $query = "UPDATE viajes SET chofer=?, vehiculo=?, ruta=?, precio=? WHERE id=?";
     $stmt = $db->prepare($query);
@@ -39,9 +41,10 @@ class viajes
       return false;
     }
   }
-  public function deleteViaje($id){
+  public function deleteViaje($id)
+  {
     global $db;
-    $query = "UPDATE viajes SET is_active=false WHERE id=?";
+    $query = "UPDATE viajes SET is_active=0 WHERE id=?";
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
@@ -50,27 +53,19 @@ class viajes
       return false;
     }
   }
-  public function getViajes($id=null){
+  public function getViajes($id = null)
+  {
     global $db;
     if ($id) {
-      $query = "SELECT * FROM viajes WHERE id=? AND is_active=true";
+      $query = "SELECT * FROM viajes WHERE id=? AND is_active=1";
       $stmt = $db->prepare($query);
       $stmt->bind_param("i", $id);
     } else {
-      $query = "SELECT * FROM viajes WHERE is_active=true";
+      $query = "SELECT * FROM viajes WHERE is_active=1";
       $stmt = $db->prepare($query);
     }
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_all(MYSQLI_ASSOC);
-  }
-  public function validateViaje($chofer, $vehiculo, $ruta, $precio){
-    global $db;
-    $query = "SELECT * FROM viajes WHERE chofer=? AND vehiculo=? AND ruta=? AND precio=? AND is_active=true";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param("iiid", $chofer, $vehiculo, $ruta, $precio);
     if ($stmt->execute()) {
-      return true;
+      return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     } else {
       return false;
     }
