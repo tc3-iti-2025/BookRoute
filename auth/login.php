@@ -15,10 +15,10 @@
 </head>
 
 <body class="flex items-center justify-center h-screen bg-[#918B76]">
-  <form action="/bookroute/api/controllers/auth.php" method="post">
+  <form action="/bookroute/api/controllers/auth_login.php" method="post">
     <div class="bg-white rounded-lg shadow-lg w-96 h-128 flex flex-col justify-center items-center">
       <div class="flex justify-center mb-10">
-        <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="w-96 h-40 mt-5">
+        <img src="../images/logoBookRouteLight.svg" alt="BookRoute Logo" class="w-96 h-40 mt-5">
       </div>
       <div class="flex flex-col items-center">
         <input required class="font-['inria sans', sans-serif] w-80 h-8 p-2 border-1 border-gray-400 rounded-lg mt-5 "
@@ -34,7 +34,7 @@
         </div>
         <input
           class="hover:bg-blue-600 cursor-pointer bg-[#007A8C] font-['inria sans', sans-serif] border-none rounded-lg w-64 h-10 my-2 text-white flex justify-center"
-          type="submit" value="Ingresar" name="btnLogin">
+          type="submit" value="Ingresar" name="btnLogin" id="btnLogin">
         <p class="font-['inria sans', sans-serif]">
           <span class="text-gray-600">No tienes una cuenta?</span>
           <a class="cursor-pointer" href="signIn.html">

@@ -15,7 +15,7 @@
 </head>
 
 <body class="flex items-center justify-center h-screen bg-[#918B76]">
-  <form action="/" method="post">
+  <form action="/api/controllers/usuarios_controller.php" method="post"> 
     <div class="bg-white rounded-lg shadow-lg w-96 h-128 flex flex-col justify-center items-center relative">
       <div class="flex justify-center mb-5">
         <div
@@ -27,7 +27,7 @@
             </svg>
           </a>
         </div>
-        <img src="images/logoBookRouteLight.svg" alt="BookRoute Logo" class="logo">
+        <img src="../images/logoBookRouteLight.svg" alt="BookRoute Logo" class="logo">
       </div>
       <div class="flex flex-col items-center">
         <div class="flex flex-row w-full items-center justify-between mt-2">

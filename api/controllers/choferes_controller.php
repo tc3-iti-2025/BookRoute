@@ -3,7 +3,7 @@
 require_once '../models/choferes.php';
 $choferes = new choferes();
 
-switch ($_SERVER['REQUEST_METHOD']) {
+switch ($_SERVER['REQUEST_METHOD']) { // GET, POST, PUT, DELETE
   case 'GET':
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
