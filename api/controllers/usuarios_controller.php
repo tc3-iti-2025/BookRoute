@@ -22,7 +22,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     if (isset($_POST['persona']) && isset($_POST['correo']) && isset($_POST['password']) && isset($_POST['rol'])) {
       $persona = $_POST['persona'];
       $correo = $_POST['correo'];
-      $password = $_POST['password'];
+      $password = md5($_POST['password']);
       $rol = $_POST['rol'];
       $result = $usuarios->insertUsuario($persona, $correo, $password, $rol);
       if ($result) {
@@ -35,13 +35,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
     }
     break;
   case 'PUT':
-    parse_str(file_get_contents("php://input"), $_PUT);
-    if (isset($_PUT['persona']) && isset($_PUT['correo']) && isset($_PUT['password']) && isset($_PUT['rol'])) {
-      $persona = $_PUT['persona'];
-      $correo = $_PUT['correo'];
-      $password = $_PUT['password'];
-      $rol = $_PUT['rol'];
-      $id = $_PUT['id'];
+    $input = json_decode(file_get_contents("php://input"), true);
+    if (isset($input['persona']) && isset($input['correo']) && isset($input['password']) && isset($input['rol']) && isset($input['id'])) {
+      $persona = $input['persona'];
+      $correo = $input['correo'];
+      $password = md5($input['password']);
+      $rol = $input['rol'];
+      $id = $input['id'];
+
       $result = $usuarios->updateUsuario($persona, $correo, $password, $rol, $id);
       if ($result) {
         echo json_encode(array("message" => "Usuario updated successfully."));

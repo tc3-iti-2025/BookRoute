@@ -1,8 +1,7 @@
 <?php
 
 require_once '../db/db.php';
-require_once 'personas.php';
-class usuarios extends personas
+class usuarios
 {
   public $id;
   public $persona;
@@ -12,7 +11,6 @@ class usuarios extends personas
 
   public function __construct($id = null, $persona = null, $correo = null, $password = null, $rol = null)
   {
-    parent::__construct($ci = null, $pri_nom = null, $seg_nom = null, $pri_ape = null, $seg_ape = null);
     $this->id = $id;
     $this->persona = $persona;
     $this->correo = $correo;
@@ -20,23 +18,9 @@ class usuarios extends personas
     $this->rol = $rol;
   }
 
-  public function insertUsuario($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape, $correo, $password, $rol)
+  public function insertUsuario($persona, $correo, $password, $rol)
   {
     global $db;
-    $persona = parent::insertPersona($ci, $pri_nom, $seg_nom, $pri_ape, $seg_ape);
-    if (!$persona) {
-      return false;
-    }
-    $personas = parent::getPersonas();
-    if (!$personas) {
-      return false;
-    }
-    foreach ($personas as $row) {
-      if ($row['ci'] == $ci) {
-        $persona = $row['id'];
-        break;
-      }
-    }
     $query = "INSERT INTO usuarios (persona, correo, password, rol) VALUES (?, ?, ?, ?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param("issi", $persona, $correo, $password, $rol);
@@ -46,12 +30,12 @@ class usuarios extends personas
       return false;
     }
   }
-  public function updateUsuario($correo, $password, $rol, $id)
+  public function updateUsuario($persona, $correo, $password, $rol, $id)
   {
     global $db;
-    $query = "UPDATE usuarios SET correo=?, password=?, rol=? WHERE id=?";
+    $query = "UPDATE usuarios SET persona=?, correo=?, password=?, rol=? WHERE id=?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param("ssii", $correo, $password, $rol, $id);
+    $stmt->bind_param("issii", $persona, $correo, $password, $rol, $id);
     if ($stmt->execute()) {
       return true;
     } else {

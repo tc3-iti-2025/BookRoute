@@ -23,52 +23,53 @@
       <div class="flex justify-end w-auto h-full align-middle items-center">
         <form action="/bookroute/api/controllers/auth_login.php" method="post">
           <input type="submit" value="Cerrar Sesión" name="btnLogout" id="btnLogout"
-            class="cursor-pointer hover:bg-gray-700 bg-blue-600 dark:bg-gray-400 text-white dark:text-black-600 font-['Inria_Sans', sans-serif] rounded-lg px-4 py-2 mr-5">
+            class="cursor-pointer hover:bg-gray-700 hover:text-white bg-blue-600 dark:bg-gray-400 text-black-300 dark:text-black-600 font-['Inria_Sans', sans-serif] rounded-lg px-4 py-2 mr-5">
         </form>
       </div>
       <img src="../images/logoBookRouteDark.svg" alt="BookRoute Logo" class="w-48 h-20 my-auto">
     </div>
   </header>
+  <div id="modal-container"></div>
   <div class="w-full h-full flex flex-col justify-center align-middle items-center">
     <ul class="flex flex-row justify-center items-center h-20 w-[80%] bg-gray-200 dark:bg-gray-700 rounded-t-lg">
       <li class="mx-4">
         <button onclick="loadTable('personas')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="personas">Personas</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('usuarios')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="usuarios">Usuarios</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('choferes')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="choferes">Choferes</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('rutas')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="rutas">Rutas</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('viajes')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="viajes">Viajes</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('reservas')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="reservas">Reservas</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('vehiculos')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="vehiculos">Vehiculos</span></button>
       </li>
       <li class="mx-4">
         <button onclick="loadTable('estadisticas')"
-          class="cursor-pointer dark:text-blue-400 text-xl font-['Inria_Sans', sans-serif]"><span
+          class="cursor-pointer text-gray-900 dark:text-white text-xl font-['Inria_Sans', sans-serif]"><span
             id="estadisticas">Estadisticas</span></button>
       </li>
     </ul>
@@ -83,7 +84,9 @@
       <p class="text-white text-sm font-['Inria_Sans', sans-serif]">© 2025 BookRoute. Todos los derechos reservados.</p>
     </div>
   </footer>
-  <script type="text/javascript" src="admin.js"></script>
+  <script type="text/javascript" src="js/LoadTable.js"></script>
+  <script type="text/javascript" src="js/OpenModal.js"></script>
+  <script type="text/javascript" srx="js/Personas.js"></script>
 </body>
 
 </html>
