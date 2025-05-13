@@ -1,5 +1,6 @@
 <?php
 
+require_once '../db/db.php';
 class viajes
 {
   public $id;
@@ -56,18 +57,15 @@ class viajes
   public function getViajes($id = null)
   {
     global $db;
-    if ($id) {
-      $query = "SELECT * FROM viajes WHERE id=? AND is_active=1";
-      $stmt = $db->prepare($query);
-      $stmt->bind_param("i", $id);
-    } else {
-      $query = "SELECT * FROM viajes WHERE is_active=1";
-      $stmt = $db->prepare($query);
-    }
-    if ($stmt->execute()) {
-      return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    } else {
-      return false;
-    }
+    // $query = "SELECT * FROM viajes WHERE is_active=1";
+    $stmt = $db->prepare("SELECT * FROM viajes");
+    // if ($id) {
+    //   $query = "SELECT * FROM viajes WHERE id=? AND is_active=1";
+    //   $stmt = $db->prepare($query);
+    //   $stmt->bind_param("i", $id);
+    // }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return ($result) ? $result->fetch_all(MYSQLI_ASSOC) : [];
   }
 }
