@@ -15,8 +15,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
       $result = $viajes->mostrarViajes();
       echo json_encode($result);
       exit;
-    } else {
-      echo json_encode(array("message" => "No viajes found."));
     }
     if (isset($_GET['id'])) {
       $id = $_GET['id'];

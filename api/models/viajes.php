@@ -71,7 +71,8 @@ class viajes
   public function mostrarViajes()
   {
     global $db;
-    $query = "SELECT viajes.id, personas.pri_nom, personas.pri_ape, vehiculos.matricula, vehiculos.tipo, vehiculos.asientos_totales, 
+    $query = "SELECT viajes.id, personas.pri_nom, personas.pri_ape, 
+              vehiculos.matricula, vehiculos.tipo, vehiculos.asientos_totales, 
               rutas.origen, rutas.destino, rutas.distancia ,viajes.precio
               FROM viajes
               LEFT JOIN choferes ON viajes.chofer = choferes.id
