@@ -11,7 +11,7 @@ if (isset($_POST['btnLogin'])) {
     exit();
   }
 
-  $query = "SELECT * FROM usuarios u, personas p WHERE u.persona = p.id AND correo = ? AND password = ? AND u.is_active = true AND p.is_active = true";
+  $query = "SELECT *, u.id as UsuarioID FROM usuarios u, personas p WHERE u.persona = p.id AND correo = ? AND password = ? AND u.is_active = true AND p.is_active = true";
   $stmt = $db->prepare($query);
   $stmt->bind_param("ss", $txtCorreo, $txtPassword);
   $stmt->execute();
@@ -23,7 +23,7 @@ if (isset($_POST['btnLogin'])) {
   if ($result) {
     session_start();
     $_SESSION['rol'] = $result['rol'];
-    $_SESSION['id'] = $result['id'];
+    $_SESSION['id'] = $result['UsuarioID'];
     $_SESSION['nombre'] = $result['pri_nom'];
     echo $_SESSION['rol'];
     echo $result['rol'];

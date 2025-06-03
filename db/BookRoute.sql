@@ -13,7 +13,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id)
   );
 
@@ -24,7 +24,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (persona, telefono),
     foreign key (persona) references personas (id)
   );
@@ -34,7 +34,8 @@ create table
     id int auto_increment not null,
     nombre varchar(20) not null,
     primary key (id)
-  )
+  );
+
 create table
   usuarios (
     id int auto_increment not null,
@@ -45,7 +46,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id),
     foreign key (persona) references personas (id),
     foreign key (rol) references roles (id)
@@ -61,7 +62,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id),
     foreign key (persona) references personas (id)
   );
@@ -75,9 +76,10 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id)
-  )
+  );
+
 create table
   choferes_vehiculos (
     chofer int,
@@ -85,7 +87,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (chofer, vehiculo),
     foreign key (chofer) references choferes (id),
     foreign key (vehiculo) references vehiculos (id)
@@ -100,7 +102,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id)
   );
 
@@ -111,7 +113,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (ruta, parada),
     foreign key (ruta) references rutas (id)
   );
@@ -126,7 +128,7 @@ create table
     is_active boolean default true,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id),
     foreign key (chofer) references choferes_vehiculos (chofer),
     foreign key (vehiculo) references choferes_vehiculos (vehiculo)
@@ -143,7 +145,7 @@ create table
     is_active boolean default false,
     created_at timestamp not null DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT NULL,
+    deleted_at timestamp NULL,
     primary key (id),
     foreign key (usuario) references usuarios (id),
     foreign key (viaje) references viajes (id)

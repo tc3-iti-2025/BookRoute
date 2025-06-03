@@ -1,9 +1,3 @@
-<?php
-
-session_start();
-echo "Hola $_SESSION[nombre]";
-
-?>
 <DOCTYPE html>
   <html lang="es">
 
@@ -16,9 +10,128 @@ echo "Hola $_SESSION[nombre]";
   </head>
 
   <body>
-    <form action="/bookroute/api/controllers/auth_login.php" method="post">
-      <input type="submit" value="Cerrar Sesión" name="btnLogout" id="btnLogout">
-    </form>
+    <header class="bg-white shadow-md">
+      <nav class="container mx-auto py-4 px-6">
+        <div class="flex items-center justify-between">
+          <a href="#" class="text-2xl font-bold text-gray-800">BookRoute</a>
+          <a href="http://localhost/bookroute/user/" class="text-gray-600 hover:text-gray-800">Inicio</a>
+          <a href="http://localhost/bookroute/user/reservas.php" class="text-gray-600 hover:text-gray-800">Reservas</a>
+          <div class="space-x-4">
+            <a href="#" class="text-gray-600 hover:text-gray-800">
+              <form action="/bookroute/api/controllers/auth_login.php" method="post">
+                <button type="submit" name="btnLogout" id="btnLogout"
+                  class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 font-bold rounded">Cerrar Sesión</button>
+              </form>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="hero bg-gray-100 py-20">
+      <div class="container mx-auto text-right mb-4">
+      </div>
+
+      <div class="container mx-auto">
+        <form id="destinationForm" class="max-w-lg mx-auto">
+          <div class="flex mb-4">
+            <div class="w-1/2 mr-2">
+              <label for="destination1" class="block text-gray-700 text-sm font-bold mb-2">Destino 1:</label>
+              <input type="text" id="destination1" name="destination1"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Ingresa el primer destino" required>
+            </div>
+            <div class="w-1/2 ml-2">
+              <label for="destination2" class="block text-gray-700 text-sm font-bold mb-2">Destino 2:</label>
+              <input type="text" id="destination2" name="destination2"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Ingresa el segundo destino" required>
+            </div>
+          </div>
+          <div class="flex items-center justify-center">
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit">
+              Buscar Ruta
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="destinations py-10">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold text-center mb-8">Próximos Viajes</h2>
+        <div id="destinationsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Destinations will be dynamically added here -->
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-800 py-4 text-white text-center">
+      <p>&copy; 2025 BookRoute. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+      const destinationsContainer = document.getElementById(
+        "destinationsContainer"
+      );
+
+      fetch('http://localhost/bookroute/api/controllers/viajes_controller.php?action=getDestinations')
+        .then(response => response.json())
+        .then(data => {
+          const destinations = data;
+          destinations.forEach((destination) => {
+            const destinationDiv = document.createElement("div");
+            destinationDiv.className = "bg-white rounded-lg shadow-md overflow-hidden";
+
+            picture = `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 200)}`
+
+            destinationDiv.innerHTML = `
+                <div class="p-4">
+                    <img src="${picture}" alt="Destination" class="w-full h-48 object-cover mb-4">
+                    <div class="flex justify-around items-center mb-4">
+                      <p class="text-xl font-semibold">${destination.origen}</p>
+                      <p class="text-xl font-semibold">${destination.destino}</p>
+                      </div>
+                      <hr style="border-top: 1px dashed;">
+                  <div class="flex justify-between items-center">
+                    <p class="text-lg">Precio: <span class="font-bold text-green-500">$${destination.precio}</span></p>
+                  <p class="text-lg">Distancia: <span class="font-bold">${destination.distancia} km</span></p>
+                  </div>
+                  <button id="btnDetails" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Ver más
+                  </button>
+                </div>
+            `;
+
+            destinationsContainer.appendChild(destinationDiv);
+            let eventAdded = false;
+
+            if (!eventAdded) {
+              destinationDiv.querySelector("#btnDetails").addEventListener("click", () => {
+                verDetalles(destination);
+              });
+              eventAdded = true;
+            }
+          });
+        })
+        .catch(error => console.error('Error fetching destinations:', error));
+
+      function verDetalles(destination) {
+        alert(`
+        Origen: ${destination.origen}
+        Destino: ${destination.destino}
+        Precio: ${destination.precio}
+        Distancia: ${destination.distancia} km
+        Chofer: ${destination.pri_nom} ${destination.pri_ape}
+        Vehiculo: ${destination.matricula}
+        Tipo de Vehiculo: ${destination.tipo}
+        Asientos Totales: ${destination.asientos_totales}`);
+
+      }
+
+    </script>
+
   </body>
 
   </html>

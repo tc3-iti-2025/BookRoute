@@ -1,22 +1,21 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Allow: GET, POST, PUT, DELETE');
+header('content-Type: application/json; charset=utf-8');
+
 require_once '../models/usuarios.php';
 $usuarios = new usuarios();
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
+    $response = $usuarios->getUsuarios();
     if (isset($_GET['id'])) {
-      $id = $_GET['id'];
-      $result = $usuarios->getUsuarios($id);
-      if ($result) {
-        echo json_encode($result);
-      } else {
-        echo json_encode(array("message" => "Usuario not found."));
-      }
-    } else {
-      $result = $usuarios->getUsuarios();
-      echo json_encode($result);
+      $response = $usuarios->getUsuarios($_GET['id']);
     }
+    echo json_encode($response);
     break;
   case 'POST':
     if (isset($_POST['persona']) && isset($_POST['correo']) && isset($_POST['password']) && isset($_POST['rol'])) {
@@ -35,13 +34,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
     }
     break;
   case 'PUT':
-    $input = json_decode(file_get_contents("php://input"), true);
-    if (isset($input['persona']) && isset($input['correo']) && isset($input['password']) && isset($input['rol']) && isset($input['id'])) {
-      $persona = $input['persona'];
-      $correo = $input['correo'];
-      $password = md5($input['password']);
-      $rol = $input['rol'];
-      $id = $input['id'];
+    $_PUT = json_decode(file_get_contents("php://input"), true);
+    if (isset($_PUT['persona']) && isset($_PUT['correo']) && isset($_PUT['password']) && isset($_PUT['rol']) && isset($_PUT['id'])) {
+      $persona = $_PUT['persona'];
+      $correo = $_PUT['correo'];
+      $password = md5($_PUT['password']);
+      $rol = $_PUT['rol'];
+      $id = $_PUT['id'];
 
       $result = $usuarios->updateUsuario($persona, $correo, $password, $rol, $id);
       if ($result) {
@@ -54,8 +53,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
     }
     break;
   case 'DELETE':
-    if (isset($_GET['id'])) {
-      $id = $_GET['id'];
+    $_DELETE = json_decode(file_get_contents('php://input'), true);
+    if (isset($_DELETE['id'])) {
+      $id = $_DELETE['id'];
       $result = $usuarios->deleteUsuario($id);
       if ($result) {
         echo json_encode(array("message" => "Usuario deleted successfully."));

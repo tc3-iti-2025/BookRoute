@@ -1,10 +1,27 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Allow: GET, POST, PUT, DELETE');
+header('content-Type: application/json; charset=utf-8');
+
 require_once '../models/reservas.php';
 $reservas = new reservas();
 
 switch ($_SERVER['REQUEST_METHOD']) {
 	case 'GET':
+		if (!isset($_GET['id']) && !isset($_GET['usuario'])) {
+			$result = $reservas->getReservas();
+			echo json_encode($result);
+			break;
+		}
+		if (isset($_GET['usuario'])) {
+			$usuario = $_GET['usuario'];
+			$result = $reservas->getReservasByUsuario($usuario);
+			echo json_encode($result);
+			break;
+		}
 		if (isset($_GET['id'])) {
 			$id = $_GET['id'];
 			$result = $reservas->getReservas($id);
@@ -14,9 +31,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 				http_response_code(404);
 				echo json_encode(array("message" => "Reserva no encontrada."));
 			}
-		} else {
-			$result = $reservas->getReservas();
-			echo json_encode($result);
 		}
 		break;
 	case 'POST':
@@ -70,4 +84,3 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		echo json_encode(array("message" => "Método no permitido."));
 		break;
 }
-?>

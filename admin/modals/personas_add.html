@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-
 <div class="modal h-screen w-full fixed bg-black-100">
   <div class="flex items-center justify-center">
     <div class="bg-white dark:bg-gray-200 rounded-lg shadow-xl flex flex-col justify-center items-center relative p-8">
-      <form id="formulario_modificar_usuario" method="post" class="w-full">
+      <form method="post" action="../api/controllers/usuarios_controller.php" class="w-full">
         <div class="dark:bg-grey-200 w-full max-w-md">
           <div class="flex flex-col items-center w-full">
-            <input type="hidden" name="id" id="id">
             <input name="persona" id="persona" list="personas-selector" placeholder="Seleccione la persona"
               class="font-['inria sans', sans-serif] w-full h-15 p-3 border border-gray-400 dark:border-gray-500 rounded-lg mx-2 mt-2 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition duration-300">
             <datalist type="search" id="personas-selector" required>
             </datalist>
-            <input type="text"
+            <input type=" text"
               class="font-['inria sans', sans-serif] w-full h-15 p-3 border border-gray-400 dark:border-gray-500 rounded-lg mx-2 mt-2 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition duration-300"
               name="correo" id="correo" placeholder="Email (*)" required>
             <input type="password"
@@ -32,8 +21,9 @@
               <option value="2">Cliente</option>
             </datalist>
             <p class="font-['inria sans', sans-serif] text-gray-500 mt-1"> (*) = Campo Requerido</p>
-            <input type="submit" value="Editar Usuario"
+            <button
               class="bg-[#007A8C] hover:bg-[#005A6B] cursor-pointer font-['inria sans', sans-serif] border-none rounded-lg w-full h-11 my-3 text-white flex justify-center items-center transition duration-300">
+              Crear Usuario
             </button>
           </div>
         </div>
@@ -46,25 +36,4 @@
   </div>
 
 </div>
-<script>
-  const formulario = document.getElementById('formulario_modificar_usuario');
-  formulario.addEventListener('submit', (event) => {
-    id = formulario.elements['id'];
-    persona = formulario.elements['persona'];
-    correo = formulario.elements['correo'];
-    password = formulario.elements['password'];
-    rol = formulario.elements['rol'];
-
-    modificarUsuario(id, persona, correo, password, rol);
-  })
-
-  function modificarUsuario(id, persona, correo, password, rol) {
-    setTimeout(() => {
-      alert(id, persona, correo, password, rol);
-    }, 1000)
-  }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-</html>

@@ -1,10 +1,23 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+header('Allow: GET, POST, PUT, DELETE');
+header('content-Type: application/json; charset=utf-8');
+
 require_once '../models/viajes.php';
 $viajes = new viajes();
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
+    if (isset($_GET['action']) && $_GET['action'] == 'getDestinations') {
+      $result = $viajes->mostrarViajes();
+      echo json_encode($result);
+      exit;
+    } else {
+      echo json_encode(array("message" => "No viajes found."));
+    }
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $result = $viajes->getViajes($id);

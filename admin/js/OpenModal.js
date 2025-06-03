@@ -5,7 +5,6 @@ function cargarModal(archivoHTML) {
       const contenedor = document.getElementById('modal-container');
       contenedor.innerHTML = html;
       mostrarModal();
-      getPersonas();
     });
 }
 

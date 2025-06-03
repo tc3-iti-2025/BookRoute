@@ -57,13 +57,28 @@ class viajes
   public function getViajes($id = null)
   {
     global $db;
-    // $query = "SELECT * FROM viajes WHERE is_active=1";
+    $query = "SELECT * FROM viajes WHERE is_active=1";
     $stmt = $db->prepare("SELECT * FROM viajes");
-    // if ($id) {
-    //   $query = "SELECT * FROM viajes WHERE id=? AND is_active=1";
-    //   $stmt = $db->prepare($query);
-    //   $stmt->bind_param("i", $id);
-    // }
+    if ($id) {
+      $query = "SELECT * FROM viajes WHERE id=? AND is_active=1";
+      $stmt = $db->prepare($query);
+      $stmt->bind_param("i", $id);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return ($result) ? $result->fetch_all(MYSQLI_ASSOC) : [];
+  }
+  public function mostrarViajes()
+  {
+    global $db;
+    $query = "SELECT viajes.id, personas.pri_nom, personas.pri_ape, vehiculos.matricula, vehiculos.tipo, vehiculos.asientos_totales, 
+              rutas.origen, rutas.destino, rutas.distancia ,viajes.precio
+              FROM viajes
+              LEFT JOIN choferes ON viajes.chofer = choferes.id
+              LEFT JOIN vehiculos ON viajes.vehiculo = vehiculos.id
+              LEFT JOIN rutas ON viajes.ruta = rutas.id
+              INNER JOIN personas ON choferes.persona = personas.id";
+    $stmt = $db->prepare($query);
     $stmt->execute();
     $result = $stmt->get_result();
     return ($result) ? $result->fetch_all(MYSQLI_ASSOC) : [];
