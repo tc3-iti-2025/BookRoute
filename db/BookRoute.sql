@@ -35,7 +35,6 @@ create table
     nombre varchar(20) not null,
     primary key (id)
   );
-
 create table
   usuarios (
     id int auto_increment not null,
@@ -79,7 +78,6 @@ create table
     deleted_at timestamp NULL,
     primary key (id)
   );
-
 create table
   choferes_vehiculos (
     chofer int,
